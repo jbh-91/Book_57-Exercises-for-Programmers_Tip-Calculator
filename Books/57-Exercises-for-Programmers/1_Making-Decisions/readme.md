@@ -9,10 +9,10 @@ Create a Tip-Calculator
 * bill amount
 * tip rate
 
-### Output
+### Conversions
 * calculate the tip
 
-### Conversions
+### Output
 * tip amount
 * total amount
 
