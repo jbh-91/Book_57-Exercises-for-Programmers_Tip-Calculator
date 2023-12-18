@@ -50,57 +50,69 @@ End
 ## Tests
 * Basic functionality
 * Tip as percantage, not decimal
-* Round-up
+* round to nearest cent 
 * Only two decimal places
 * Tip and bill amount not negative
 * total larger than bill amount
 
 ### Assertion-Test: Basic functionality
 #### Test-Plan:
+```
 Inputs:
   bill amount: 10
   tip rate: 15
 Expected result:
   Tip: 1.50 €
   Total: 11.50 €
+```
 ### Assertion-Test: Tip as percantage
 #### Test-Plan:
+```
 Inputs:
   tip rate: 15
 Expected result:
   tip >= 0
   tip is not float
-### Assertion-Test: Round-up
+```
+### Assertion-Test: Round
 #### Test-Plan:
+```
 Inputs:
   bill amount: 11.25
   tip rate: 15
 Expected result:
   Tip: 1.69 € (from 1.6875)
   Total: 11.69 € (from 12.9375)
+```
 ### Assertion-Test: Only two decimal places
 #### Test-Plan: 
+```
 Inputs:
   bill amount: 10
   tip rate: 15
 Expected result:
   Tip: 1.69 € (from 1.6875)
-  Total: 11.69 € (from 12.9375)
+  Total: 12.94 € (from 12.9375)
+  ```
 ### Assertion-Test: Tip and bill amount not negative
 #### Test-Plan: 
+```
 Inputs:
   bill amount: 10
   tip rate: 15
 Expected result:
   bill amount >= 0
   tip rate >= 0
+```
 ### Assertion-Test: total larger than bill amount
 #### Test-Plan: 
+```
 Inputs:
   bill amount: 10
   tip rate: 15
 Expected result:
   Total >= bill amount
+```
 
 
 # Additional, optional Tasks
