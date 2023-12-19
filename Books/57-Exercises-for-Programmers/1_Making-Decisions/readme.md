@@ -1,22 +1,27 @@
 # Project: Tip Calculator
-**Goal:** Learning TDD[^1]
 
+> **Goal:** Learning TDD[^1]
 
 ## Task
+
 Create a Tip-Calculator
 
 ### Input
+
 * bill amount
 * tip rate
 
 ### Conversions
+
 * calculate the tip
 
 ### Output
+
 * tip amount
 * total amount
 
 ## Psuedo code
+
 ```
 TipCalculator
     Initialize billAmount to 0
@@ -41,13 +46,14 @@ End
 ```
 
 ## Constraints
+
 * Enter the tip as a percentage.
   * For example, a 15 % tip would be entered as 15, not 0.15.
   * The program should handle the division
 * Round fractions of a cent up to the next cent
 
-
 ## Tests
+
 * Basic functionality
 * Tip as percantage, not decimal
 * round to nearest cent 
@@ -56,7 +62,9 @@ End
 * total larger than bill amount
 
 ### Assertion-Test: Basic functionality
-#### Test-Plan:
+
+**Test-Plan:**
+
 ```
 Inputs:
   bill amount: 10
@@ -65,8 +73,11 @@ Expected result:
   Tip: 1.50 €
   Total: 11.50 €
 ```
+
 ### Assertion-Test: Tip as percantage
-#### Test-Plan:
+
+**Test-Plan:**
+
 ```
 Inputs:
   tip rate: 15
@@ -74,8 +85,11 @@ Expected result:
   tip >= 0
   tip is not float
 ```
+
 ### Assertion-Test: Round
-#### Test-Plan:
+
+**Test-Plan:**
+
 ```
 Inputs:
   bill amount: 11.25
@@ -84,8 +98,11 @@ Expected result:
   Tip: 1.69 € (from 1.6875)
   Total: 12.94 € (from 12.9375)
 ```
+
 ### Assertion-Test: Only two decimal places
-#### Test-Plan: 
+
+**Test-Plan:**
+
 ```
 Inputs:
   bill amount: 11.25
@@ -94,8 +111,11 @@ Expected result:
   Tip: 1.69 € (from 1.6875)
   Total: 12.94 € (from 12.9375)
   ```
+
 ### Assertion-Test: Tip and bill amount not negative
-#### Test-Plan: 
+
+**Test-Plan:**
+
 ```
 Inputs:
   bill amount: 10
@@ -104,8 +124,11 @@ Expected result:
   bill amount >= 0
   tip rate >= 0
 ```
+
 ### Assertion-Test: total larger than bill amount
-#### Test-Plan: 
+
+**Test-Plan:**
+
 ```
 Inputs:
   bill amount: 10
@@ -115,7 +138,8 @@ Expected result:
 ```
 
 
-# Additional, optional Tasks
+## Additional, optional Tasks
+
 * only numbers can be entered for the bill amount and tip rate
   * Use Exceptions to display an appropiate message 
   * Instead of using an Errormessage, keep asking until the input is correct
@@ -124,5 +148,4 @@ Expected result:
 * Add a gui
 * add a slider (satisfaction with the server), using a range between 5 % and  20 %
 
-  
 [^1]: test-driven development
