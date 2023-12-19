@@ -82,13 +82,13 @@ Inputs:
   tip rate: 15
 Expected result:
   Tip: 1.69 € (from 1.6875)
-  Total: 12.64 € (from 12.9375)
+  Total: 12.94 € (from 12.9375)
 ```
 ### Assertion-Test: Only two decimal places
 #### Test-Plan: 
 ```
 Inputs:
-  bill amount: 10
+  bill amount: 11.25
   tip rate: 15
 Expected result:
   Tip: 1.69 € (from 1.6875)
