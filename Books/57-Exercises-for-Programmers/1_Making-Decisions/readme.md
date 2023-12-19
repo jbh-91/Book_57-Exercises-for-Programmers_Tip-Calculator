@@ -22,7 +22,7 @@ Create a Tip-Calculator
 
 ## Psuedo code
 
-```
+```text
 TipCalculator
     Initialize billAmount to 0
     Initialize tip to 0
@@ -56,7 +56,7 @@ End
 
 * Basic functionality
 * Tip as percantage, not decimal
-* round to nearest cent 
+* round to nearest cent
 * Only two decimal places
 * Tip and bill amount not negative
 * total larger than bill amount
@@ -65,7 +65,7 @@ End
 
 **Test-Plan:**
 
-```
+```text
 Inputs:
   bill amount: 10
   tip rate: 15
@@ -78,7 +78,7 @@ Expected result:
 
 **Test-Plan:**
 
-```
+```text
 Inputs:
   tip rate: 15
 Expected result:
@@ -90,7 +90,7 @@ Expected result:
 
 **Test-Plan:**
 
-```
+```text
 Inputs:
   bill amount: 11.25
   tip rate: 15
@@ -103,7 +103,7 @@ Expected result:
 
 **Test-Plan:**
 
-```
+```text
 Inputs:
   bill amount: 11.25
   tip rate: 15
@@ -116,7 +116,7 @@ Expected result:
 
 **Test-Plan:**
 
-```
+```text
 Inputs:
   bill amount: 10
   tip rate: 15
@@ -129,7 +129,7 @@ Expected result:
 
 **Test-Plan:**
 
-```
+```text
 Inputs:
   bill amount: 10
   tip rate: 15
@@ -137,11 +137,10 @@ Expected result:
   Total >= bill amount
 ```
 
-
 ## Additional, optional Tasks
 
 * only numbers can be entered for the bill amount and tip rate
-  * Use Exceptions to display an appropiate message 
+  * Use Exceptions to display an appropiate message
   * Instead of using an Errormessage, keep asking until the input is correct
 * Don't allow to input negative numbers
 * Break the program into functions that do computations
