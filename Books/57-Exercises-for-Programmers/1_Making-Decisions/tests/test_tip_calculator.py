@@ -25,6 +25,17 @@ class TestTipMethods(unittest.TestCase):
         self.assertEqual(len(str(tip_amount).rsplit(".")[-1]), 2, "More or less than two decimal places")
         self.assertEqual(len(str(total_amount).rsplit(".")[-1]), 2, "More or less than two decimal places")
 
+    def test_not_negative(self):
+        tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(10, -15))
+        total_amount = tc.calculate_total_amount(10, tip_amount)
+        self.assertGreater(tip_amount, 0, "Tip amount is negative")
+        self.assertGreater(total_amount, 0, "Bill amount is negative")
+
+    def test_total_larger_than_bill(self):
+        tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(10, 15))
+        total_amount = tc.calculate_total_amount(10, tip_amount)
+        self.assertGreater(total_amount, 10, "Bill amount is smaller than total amount")
+
 
 if __name__ == "__main__":
     unittest.main()
