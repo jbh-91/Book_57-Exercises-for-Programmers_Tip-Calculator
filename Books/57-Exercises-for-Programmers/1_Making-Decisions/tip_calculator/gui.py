@@ -18,20 +18,22 @@ while True:
     
     bill_amount = tc.check_input(values['INPUT-BILL-AMOUNT'])
     tip_rate = tc.check_input(values['INPUT-TIP-RATE'])
+    errors = []
 
-    # TODO: Check bill amount and tip rate independently and use an apropriate message
-    if bill_amount:
-        if tip_rate:
-            tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(bill_amount, tip_rate))
-            total_amount = tc.calculate_total_amount(bill_amount, tip_amount)
-            window['OUTPUT-TIP'].update(f"Your tip is {tip_amount:.2f} €")
-            window['OUTPUT-TOTAL'].update(f"Your total is {total_amount:.2f} €")
-        else:
-            sg.popup_error("Please enter a valid tip rate")
-            window['INPUT-TIP-RATE'].update("")
-    else:
-        sg.popup_error("Please enter a valid bill amount")
+    if not bill_amount:
+        errors.append("bill amount")
         window['INPUT-BILL-AMOUNT'].update("")
+    if not tip_rate:
+        errors.append("tip rate")
+        window['INPUT-TIP-RATE'].update("")
 
+    if not errors:
+        tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(bill_amount, tip_rate))
+        total_amount = tc.calculate_total_amount(bill_amount, tip_amount)
+        window['OUTPUT-TIP'].update(f"Your tip is {tip_amount:.2f} €")
+        window['OUTPUT-TOTAL'].update(f"Your total is {total_amount:.2f} €")
+    else:
+        error_message = ["The following values are invalid"] + errors
+        sg.popup_error("\n- ".join(error_message), title="Invalid values")
 
 window.close()
