@@ -1,7 +1,7 @@
 from math import floor, ceil
 from string import digits
 
-def check_input(check_string: str) -> bool:
+def check_input(check_string: str) -> bool | int | float:
     # negative value
     if "-" in check_string:
         return False
@@ -13,25 +13,21 @@ def check_input(check_string: str) -> bool:
         else:
             if not all([char in digits for char in "".join(check_string.split("."))]):
                 return False
-            return True
+            return float(check_string)
     
     # int check
     if not all([char in digits for char in check_string]):
         return False
-    return True
+    return int(check_string)
 
-def get_bill_and_tip_rate() -> tuple[float, int]:
-    bill_amount = input("Please enter your bill amount:\n> ")
-    while not check_input(bill_amount):
-        bill_amount = input("Please enter a valid bill amount:\n> ")
-        
-    tip_rate = input("Please enter your tip rate (as percentage):\n> ")
-    while not check_input(tip_rate):
-        tip_rate = input("Please enter a valid tip rate (as percentage):\n> ")
+def get_input(input_var_name: str) -> float | int:
+    user_input = check_input(input(f"Please enter your {input_var_name}:\n> "))
+    while not user_input:
+        user_input = check_input(input(f"Please enter a valid {input_var_name}:\n> "))
 
-    return float(bill_amount), int(tip_rate)
+    return user_input
 
-# Custom round function for educational purposes, usually just use "round(float_num, 2)
+# Custom round function for educational purposes, usually just use round(float_num, 2)
 def round_to_2_decimals(float_num: float) -> float:
     # WONTFIX: Floating Point Math is wonky https://0.30000000000000004.com
     #          bill_amount = 11.25
@@ -52,9 +48,11 @@ def render_bill(bill_amount: float, tip_rate: float) -> None:
     tip_amount = round_to_2_decimals(calculate_tip_amount(bill_amount, tip_rate))
     total_amount = calculate_total_amount(bill_amount, tip_amount)
 
-    print(f"{tip_amount} EUR")
-    print(f"{total_amount} EUR")
+    print(f"{tip_amount:.2f} EUR")
+    print(f"{total_amount:.2f} EUR")
 
 if __name__ == "__main__":
-    bill_amount, tip_rate = get_bill_and_tip_rate()
+    bill_amount = get_input("bill amount")
+    tip_rate = get_input("tip rate (as percentage)")
+
     render_bill(bill_amount, tip_rate)
