@@ -5,6 +5,10 @@ layout = [[sg.Text("Please enter your bill amount:")],
           [sg.InputText(key='INPUT-BILL-AMOUNT')],
           [sg.Text("Please enter your tip rate:")],
           [sg.InputText(key='INPUT-TIP-RATE')],
+          [sg.Text("How satisfied have you been with your server (in %)?")],
+          # The range doesn't make any sense in this task, so i used ticks in 10 % intervals
+          # [sg.Slider(range=(5,20), orientation="horizontal")],
+          [sg.Slider(range=(0,100), tick_interval=20, orientation="horizontal", expand_x=True)],
           [sg.Text("Your tip has not been calculated", key='OUTPUT-TIP')],
           [sg.Text("Your total has not been calculated", key='OUTPUT-TOTAL')],
           [sg.Button('Ok'), sg.Button('Cancel')] ]
@@ -17,13 +21,13 @@ while True:
         break
     
     bill_amount = tc.check_input(values['INPUT-BILL-AMOUNT'])
-    tip_rate = tc.check_input(values['INPUT-TIP-RATE'])
+    tip_rate = tc.check_input(values['INPUT-TIP-RATE'], allow_zero=True)
     errors = []
 
-    if not bill_amount:
+    if bill_amount is False:
         errors.append("bill amount")
         window['INPUT-BILL-AMOUNT'].update("")
-    if not tip_rate:
+    if tip_rate is False:
         errors.append("tip rate")
         window['INPUT-TIP-RATE'].update("")
 
