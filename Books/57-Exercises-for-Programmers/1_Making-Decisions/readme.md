@@ -58,7 +58,7 @@ End
 * Tip as percantage, not decimal
 * round to nearest cent
 * Only two decimal places
-* Tip and bill amount not negative
+* Tip rate and bill amount not negative
 * total larger than bill amount
 
 ### Assertion-Test: Basic functionality
@@ -112,14 +112,14 @@ Expected result:
   Total: 12.94 € (from 12.9375)
   ```
 
-### Assertion-Test: Tip and bill amount not negative
+### Assertion-Test: Tip rate and bill amount not negative
 
 **Test-Plan:**
 
 ```text
 Inputs:
-  bill amount: 10
-  tip rate: 15
+  bill amount: -11.25
+  tip rate: -10
 Expected result:
   bill amount >= 0
   tip rate >= 0
