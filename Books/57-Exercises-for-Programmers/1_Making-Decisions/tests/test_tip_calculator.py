@@ -13,7 +13,7 @@ class TestTipMethods(unittest.TestCase):
         self.assertGreaterEqual(tc.calculate_tip_amount(10, 15), 0)
         self.assertIs(type(tc.calculate_tip_amount(10, 15)), float)
 
-    def test_round(self):
+    def test_rounding(self):
         tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(11.25, 15))
         total_amount = tc.calculate_total_amount(11.25, tip_amount)
         self.assertEqual(tip_amount, 1.69)
