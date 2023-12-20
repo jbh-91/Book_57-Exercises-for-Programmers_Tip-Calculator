@@ -2,6 +2,10 @@ from math import floor, ceil
 from string import digits
 
 def check_input(check_string: str) -> bool | int | float:
+    # empty string
+    if check_string is "":
+        return False
+    
     # negative value
     if "-" in check_string:
         return False
