@@ -4,8 +4,8 @@ This module contains the class TipCalculator, which is a simple tool to calculat
 
 Example:
     To use the TipCalculator class, create an instance of the class and optionally pass
-    - a bill amount
-    - a tip rate
+    - a float or integer value for the bill amount
+    - an integer value for the tip rate
     OR
     - a boolean value that indicates whether you want to get the input from the command line interface or not. By default, this value is False.
 
