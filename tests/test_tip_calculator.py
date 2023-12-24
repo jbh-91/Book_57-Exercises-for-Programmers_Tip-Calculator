@@ -1,40 +1,36 @@
 import unittest
-from tip_calculator import tip_calculator as tc
+from tip_calculator import tip_calculator
 
 class TestTipMethods(unittest.TestCase):
 
     def test_basic_func(self):
-        tip_amount = tc.calculate_tip_amount(10, 15)
-        total_amount = tc.calculate_total_amount(10, tip_amount)
-        self.assertEqual(tip_amount, 1.5)
-        self.assertEqual(total_amount, 11.50)
+        tc = tip_calculator.TipCalculator(10, 15)
+        self.assertEqual(tc.tip_amount, 1.5)
+        self.assertEqual(tc.total_amount, 11.50)
 
     def test_tip_as_percentage(self):
-        self.assertGreaterEqual(tc.calculate_tip_amount(10, 15), 0)
-        self.assertIs(type(tc.calculate_tip_amount(10, 15)), float)
+        tc = tip_calculator.TipCalculator(10, 15)
+        self.assertGreaterEqual(tc.tip_amount, 0)
+        self.assertIs(type(tc.tip_amount), float)
 
     def test_rounding(self):
-        tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(11.25, 15))
-        total_amount = tc.calculate_total_amount(11.25, tip_amount)
-        self.assertEqual(tip_amount, 1.69)
-        self.assertEqual(total_amount, 12.94)
+        tc = tip_calculator.TipCalculator(11.25, 15)
+        self.assertEqual(tc.tip_amount, 1.69)
+        self.assertEqual(tc.total_amount, 12.94)
 
     def test_decimals(self):
-        tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(11.25, 15))
-        total_amount = tc.calculate_total_amount(11.25, tip_amount)
-        self.assertEqual(len(str(tip_amount).rsplit(".")[-1]), 2, "More or less than two decimal places")
-        self.assertEqual(len(str(total_amount).rsplit(".")[-1]), 2, "More or less than two decimal places")
+        tc = tip_calculator.TipCalculator(11.25, 15)
+        self.assertEqual(len(str(tc.tip_amount).rsplit(".")[-1]), 2, "More or less than two decimal places")
+        self.assertEqual(len(str(tc.total_amount).rsplit(".")[-1]), 2, "More or less than two decimal places")
 
     def test_input_not_negative(self):
-        tip_rate = "-15"
-        bill_amount = "-11.25"
-        self.assertFalse(tc.check_input(tip_rate), "Tip rate is negative")
-        self.assertFalse(tc.check_input(bill_amount), "Bill amount is negative")
+        tc = tip_calculator.TipCalculator()
+        self.assertFalse(tc.check_string_input("-15"), "Tip rate is negative")
+        self.assertFalse(tc.check_string_input("-11.25"), "Bill amount is negative")
 
     def test_total_larger_than_bill(self):
-        tip_amount = tc.round_to_2_decimals(tc.calculate_tip_amount(10, 15))
-        total_amount = tc.calculate_total_amount(10, tip_amount)
-        self.assertGreater(total_amount, 10, "Bill amount is smaller than total amount")
+        tc = tip_calculator.TipCalculator(10, 15)
+        self.assertGreater(tc.total_amount, 10, "Bill amount is smaller than total amount")
 
 
 if __name__ == "__main__":
