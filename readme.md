@@ -1,5 +1,6 @@
 # Project: Tip Calculator
 
+This is a task from the book **Exercises for Programmers** – *57 Challenges to Develop Your Coding Skills* by Brian P. Hogan, a part of **[The Pragmatic Programmers](https://pragprog.com/titles/bhwb/exercises-for-programmers/)** series
 > **Goal:** Learning TDD[^1]
 
 ## Task
