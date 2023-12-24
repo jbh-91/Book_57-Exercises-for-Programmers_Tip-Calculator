@@ -1,36 +1,37 @@
 from math import floor, ceil
 from string import digits
 
-def check_input(check_string: str, allow_zero: bool = False) -> bool | int | float:
-    if not allow_zero and check_string == "0":
+
+def check_input(string_to_check: str, allow_zero: bool = False, allow_float: bool = True) -> bool | int | float:
+    if not allow_zero and string_to_check == "0":
         return False
     
     # empty string
-    if check_string is "":
+    if string_to_check is "":
         return False
     
     # negative value
-    if "-" in check_string:
+    if "-" in string_to_check:
         return False
     
     # float check
-    if "." in check_string:
-        if len(check_string.split(".")) > 2:
+    if "." in string_to_check and allow_float:
+        if len(string_to_check.split(".")) > 2:
             return False
         else:
-            if not all([char in digits for char in "".join(check_string.split("."))]):
+            if not all([char in digits for char in "".join(string_to_check.split("."))]):
                 return False
-            return float(check_string)
+            return float(string_to_check)
     
     # int check
-    if not all([char in digits for char in check_string]):
+    if not all([char in digits for char in string_to_check]):
         return False
-    return int(check_string)
+    return int(string_to_check)
 
-def get_input(input_var_name: str, allow_zero: bool) -> float | int:
-    user_input = check_input(input(f"Please enter your {input_var_name}:\n> "), allow_zero)
+def get_input(input_var_name: str, allow_zero: bool, allow_float: bool) -> float | int:
+    user_input = check_input(input(f"Please enter your {input_var_name}:\n> "), allow_zero, allow_float)
     while user_input is False:
-        user_input = check_input(input(f"Please enter a valid {input_var_name}:\n> "), allow_zero)
+        user_input = check_input(input(f"Please enter a valid {input_var_name}:\n> "), allow_zero, allow_float)
 
     return user_input
 
@@ -60,6 +61,6 @@ def render_bill(bill_amount: float, tip_rate: float) -> None:
 
 if __name__ == "__main__":
     bill_amount = get_input("bill amount")
-    tip_rate = get_input("tip rate (as percentage)", allow_zero=True)
+    tip_rate = get_input("tip rate (as percentage)", allow_zero=True, allow_float=False)
 
     render_bill(bill_amount, tip_rate)
